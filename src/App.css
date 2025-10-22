@@ -1,42 +1,120 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  background-color: #f9fafb;
+  color: #111827;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  background: #ffffff;
+  margin-top: 60px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  width: 420px;
+  padding: 30px;
+  transition: 0.3s ease-in-out;
+}
+
+.container:hover {
+  transform: translateY(-3px);
+}
+
+h1 {
   text-align: center;
+  color: #2563eb;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.input-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 1rem;
+  transition: border 0.2s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+input:focus {
+  border-color: #2563eb;
 }
 
-.card {
-  padding: 2em;
+button {
+  padding: 10px 16px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-.read-the-docs {
-  color: #888;
+button:hover {
+  background: #1d4ed8;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f4f6;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+
+.task-item:hover {
+  background: #e5e7eb;
+}
+
+.task-item span {
+  flex: 1;
+}
+
+.actions button {
+  margin-left: 5px;
+  font-size: 0.8rem;
+}
+
+.actions .edit {
+  background: #16a34a;
+}
+
+.actions .edit:hover {
+  background: #15803d;
+}
+
+.actions .delete {
+  background: #dc2626;
+}
+
+.actions .delete:hover {
+  background: #b91c1c;
+}
+
+.empty {
+  text-align: center;
+  color: #6b7280;
+  margin-top: 20px;
+  font-style: italic;
 }

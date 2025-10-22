@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState([]);
+  const [taskInput, setTaskInput] = useState('');
+  const [editIndex, setEditIndex] = useState(null);
+
+  const addTask = () => {
+    if (!taskInput.trim()) return;
+    if (editIndex !== null) {
+      const updated = [...tasks];
+      updated[editIndex] = taskInput;
+      setTasks(updated);
+      setEditIndex(null);
+    } else {
+      setTasks([...tasks, taskInput]);
+    }
+    setTaskInput('');
+  };
+
+  const deleteTask = (index) => {
+    const updated = tasks.filter((_, i) => i !== index);
+    setTasks(updated);
+  };
+
+  const editTask = (index) => {
+    setTaskInput(tasks[index]);
+    setEditIndex(index);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <h2>📝 Haritha's Task Manager App</h2>
+      <div className="input-section">
+        <input
+          type="text"
+          placeholder="Enter a task..."
+          value={taskInput}
+          onChange={(e) => setTaskInput(e.target.value)}
+        />
+        <button onClick={addTask}>{editIndex !== null ? 'Update' : 'Add'}</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <ul className="task-list">
+        {tasks.length === 0 ? (
+          <p className="empty">No tasks yet — add one above!</p>
+        ) : (
+          tasks.map((task, index) => (
+            <li key={index} className="task-item">
+              <span>{task}</span>
+              <div className="actions">
+                <button className="edit" onClick={() => editTask(index)}>Edit</button>
+                <button className="delete" onClick={() => deleteTask(index)}>Delete</button>
+              </div>
+            </li>
+          ))
+        )}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
